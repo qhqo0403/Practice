@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>infinite scrolling</title>
+  <style>
+    body, header, div, h1{
+      margin: 0; padding: 0;
+    }
+    body{
+      width: 100%; height: 1000px;
+      padding-top: 100px;
+    }
+    header{
+      width: 100%; height: 100px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      background: #008080;
+      text-align: center;
+      line-height: 100px;
+      position: fixed; left: 0; top: 0;
+    }
+    div{
+      width: 100%; height: 500px;
+      font-size: 2rem;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Infinite Scrolling Practice</h1>
+  </header>
+  <div>
+    <p>Element 1</p>
+  </div>
+  <script>
+  let curElementNumber = 1;
+
+  function scrollHandler() {
+    const distanceToBottom = document.body.getBoundingClientRect().bottom;
+
+    if (distanceToBottom < document.documentElement.clientHeight + 150) {
+        const newDataElement = document.createElement('div');
+        curElementNumber++;
+        newDataElement.innerHTML = `<p>Element ${curElementNumber}</p>`;
+        document.body.append(newDataElement);
+    }
+  }
+
+  window.addEventListener('scroll', scrollHandler);
+  </script>
+</body>
+</html>
