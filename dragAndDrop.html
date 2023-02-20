@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag and Drop</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul{
+      list-style: none;
+    }
+    #main_header{
+      width: 100%; height: 100px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      background: #af6582;
+      text-align: center;
+      line-height: 100px;
+      position: fixed; left: 0; top: 0;
+    }
+    #wrapper{
+      margin: 0 auto;
+      width: 1050px; height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #wrapper div{
+      width: 500px;
+      border: 2px solid #ededed;
+    }
+		#wrapper div>ul{
+			max-height: 280px;
+			overflow: scroll;
+			overflow-x: hidden;
+		}
+		#wrapper div.droppable{
+			border-color: #ff5a99;
+		}
+    #wrapper div>h2{
+			height: 10%;
+      font-size: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #ededed;
+      padding-bottom: 10px;
+    }
+    #wrapper ul>li{
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      background: #ffe0ec;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header id="main_header">
+    <h1>Drag and Drop</h1>
+  </header>
+  <section id="wrapper">
+    <div class="list-box1">
+      <h2>LIST1</h2>
+      <ul id="list1">
+        <li>ITEM1-1</li>
+        <li>ITEM1-2</li>
+        <li>ITEM1-3</li>
+        <li>ITEM1-4</li>
+        <li>ITEM1-5</li>
+      </ul>
+    </div>
+    <div class="list-box2">
+      <h2>LIST2</h2>
+      <ul id="list2">
+        <li>ITEM2-1</li>
+        <li>ITEM2-2</li>
+        <li>ITEM2-3</li>
+        <li>ITEM2-4</li>
+        <li>ITEM2-5</li>
+      </ul>
+    </div>
+  </section>
+  <script>
+	const list1 = document.getElementById('list1');
+	const list2 = document.getElementById('list2');
+
+	const listDraggable = () => {
+		const lists = document.querySelectorAll('li');
+		lists.forEach(each => {
+			each.setAttribute('draggable', true);
+			each.addEventListener('dragstart', event => {
+				event.dataTransfer.setData('text/plain', this);
+				event.dataTransfer.effectAllowed = 'move';
+			});
+		})
+	}
+	listDraggable();	
+
+	const connectDroppable = (list) => {
+		list.addEventListener('dragenter', event => {
+			if (event.dataTransfer.types[0] === 'text/plain'){
+				list.parentElement.classList.add('droppable');
+				event.preventDefault();
+			}
+		});
+
+		list.addEventListener('dragover', event => {
+			event.preventDefault();
+		});
+
+		list.addEventListener('dragleave', function(event) {
+			if (event.relatedTarget.closest(document.getElementById(list)) !== list){
+				list.parentElement.classList.remove('droppable');
+			}
+		});
+		
+/*     list.addEventListener('drop', event => {
+      const listId = event.dataTransfer.getData('text/plain');
+      if (this.projects.find(p => p.id === prjId)) {
+        list.parentElement.classList.remove('droppable');
+        return;
+      }
+      document.getElementById(prjId).querySelector('button:last-of-type').click();
+      list.parentElement.classList.remove('droppable');
+    }); */
+	}
+
+	connectDroppable(list1);
+	connectDroppable(list2);
+  </script>
+</body>
+</html>
