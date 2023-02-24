@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+body, div, p, h2{
+  margin: 0; padding: 0;
+}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.5em;
+  font-weight: 300;
+  margin: 0;
+  background-color: #222;
+}
+a {
+  color: #222;
+  text-decoration: none;
+}
+.items{
+  width: 100%;
+  position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.item{
+  width: 300px; height: 200px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  margin: 10px;
+}
+.item:hover .front{
+  top: -50%;
+}
+.item:hover .back{
+  top: 50%;
+  opacity: 1;
+}
+.item:hover .front img{
+  animation: impact 1s linear infinite;
+}
+.item div{
+  position: absolute; left: 0; top: 0;
+  transition: all .5s;
+}
+.front{
+  width: 100%; height: inherit;
+  background: #333;
+  z-index: 1;
+}
+.back{
+  width: 100%; height: inherit;
+  background: #fff;
+  color: #222;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+}
+.back p{
+  margin-bottom: 10px;
+}
+.back a{
+  background: yellowgreen;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+.back a:hover{
+  background: #222;
+}
+@keyframes impact{
+  0%, 100%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+}
