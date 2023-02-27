@@ -13,48 +13,60 @@
     <div class="skill">
       <p>
         <span>HTML5</span>
-        <span>90%</span>
+        <span class="num">90%</span>
       </p>
       <div class="progress">
-        <p class="progressbar" style="width: 90%"></p>
+        <p class="progressbar"></p>
       </div>
     </div>
     <div class="skill">
       <p>
         <span>CSS3</span>
-        <span>85%</span>
+        <span class="num">85%</span>
       </p>
       <div class="progress">
-        <p class="progressbar" style="width: 85%"></p>
+        <p class="progressbar"></p>
       </div>
     </div>
     <div class="skill">
       <p>
         <span>JQUERY</span>
-        <span>60%</span>
+        <span class="num">60%</span>
       </p>
       <div class="progress">
-        <p class="progressbar" style="width: 60%"></p>
+        <p class="progressbar"></p>
       </div>
     </div>
     <div class="skill">
       <p>
         <span>REACT</span>
-        <span>70%</span>
+        <span class="num">70%</span>
       </p>
       <div class="progress">
-        <p class="progressbar" style="width: 70%"></p>
+        <p class="progressbar"></p>
       </div>
     </div>
     <div class="skill">
       <p>
         <span>JAVASCRIPT</span>
-        <span>75%</span>
+        <span class="num">75%</span>
       </p>
       <div class="progress">
-        <p class="progressbar" style="width: 80%"></p>
+        <p class="progressbar"></p>
       </div>
     </div>
   </div>
+  <script>
+
+    window.addEventListener('load', () => {
+      const skills = document.querySelectorAll('.skill');
+      skills.forEach(skill => {
+        const level = skill.querySelector('.num');
+        const progressbar = skill.querySelector('.progressbar');
+        const levelTxt = level.innerText;
+        progressbar.style.width = levelTxt;
+      });
+    });
+  </script>
 </body>
 </html>

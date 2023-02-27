@@ -42,9 +42,10 @@ h1{
   border-radius: 3px;
 }
 .progressbar{
-  height: 10px;
+  width: 0; height: 10px;
   background: linear-gradient(to right, #f28482, #ffd166);
-  animation: progress 1s linear;
+  transition: all 1s;
+  /* animation: progress 1s linear; */
 }
 @keyframes progress{
   0%{
