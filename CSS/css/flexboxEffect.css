@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  height: 100vh;
+  font-family: Raleway, sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.gallery{
+  height: 100%;
+  list-style: none;
+  display: flex;
+  overflow: hidden;
+}
+.gallery li{
+  height: 100%;
+  border-right: 5px solid #000;
+  flex: 1;
+  background: url('images/artistic-image-01.jpg') no-repeat center center;
+  transition: all .4s;
+  position: relative;
+}
+.gallery li:nth-child(2){
+  background-image: url('images/artistic-image-02.jpg');
+}
+.gallery li:nth-child(3){
+  background-image: url('images/artistic-image-03.jpg');
+}
+.gallery li:nth-child(4){
+  background-image: url('images/artistic-image-04.jpg');
+}
+.gallery li:nth-child(5){
+  border-right: none;
+  background-image: url('images/artistic-image-05.jpg');
+}
+/* .gallery:hover li{
+  flex: 1;
+} */
+.gallery li:hover{
+  flex: 3;
+  filter: grayscale(1);
+}
+.content{
+  height: 250px;
+  position: absolute; left: 0; bottom: -315px;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  transition: all .3s;
+  padding: 20px;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+.content::before{
+  content: '';
+  width: 100%; height: 60px;
+  position: absolute; left: 0; top: -5px;
+  background: #000;
+  transform-origin: left bottom;
+  transform: rotate(-3deg) scale(1.3);
+}
+.gallery li:hover .content{
+  bottom: 0;
+  transition-delay: .5s;
+}
+.content>h2{
+  margin-bottom: 15px;
+}
+.content>p{
+  margin-bottom: 30px;
+}
+.content a{
+  text-decoration: none;
+  color: #333;
+}
+.content a>.fa{
+  font-size: 2rem;
+}
