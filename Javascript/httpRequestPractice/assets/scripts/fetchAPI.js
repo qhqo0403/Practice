@@ -27,7 +27,7 @@ function sendHttpRequest(method, url, data) {
 }
 
 function fetchPost() {
-  sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/post0s')
+  sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/posts')
     .then(responseData => {
       const listOfPosts = responseData;
       for (const post of listOfPosts){
