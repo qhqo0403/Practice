@@ -33,7 +33,7 @@ let reFetch = false;
 
 async function fetchPost() {
   try {
-    const responseData = await axios.get('https://jsonplaceholder.typicode.com/posnts');
+    const responseData = await axios.get('https://jsonplaceholder.typicode.com/posts');
     console.log(responseData);
     const listOfPosts = responseData.data;
     for (const post of listOfPosts){
