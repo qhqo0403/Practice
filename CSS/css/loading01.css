@@ -1,0 +1,41 @@
+@charset "uft-8";
+
+.loadingbox{
+  width: 100px; 
+  margin: 400px auto;
+  text-align: center;
+}
+.loadingbox>span{
+  display: inline-block;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: gray;
+  animation: loading 1s linear infinite;
+}
+.loadingbox>span:nth-child(1){
+  background: #9c9;
+  animation-delay: 0s;
+}
+.loadingbox>span:nth-child(2){
+  background: #008080;
+  animation-delay: 0.2s;
+}
+.loadingbox>span:nth-child(3){
+  background: #236;
+  animation-delay: 0.4s;
+}
+
+@keyframes loading{
+  0%{
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100%{
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+body{
+  margin: 0px; padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.loading{
+  /*border: 1px solid red;*/
+  width: 100px; height: 100px;
+  position: relative;
+}
+.loading>span{
+  position: absolute; left: 0; top: 0;
+  width: 30px; height: 30px;
+  background: #9c9;
+  animation: loading 1s infinite;
+}
+
+.loading>span:last-child{
+  animation-delay: 0.5s;
+}
+
+@keyframes loading{
+  0%{
+    left: 0;
+    top: 0;
+  }
+  25%{
+    left: calc(100% - 30px);
+    top: 0;
+    background: #008080;
+  }
+  50%{
+    left: calc(100% - 30px);
+    top: calc(100% - 30px);
+    background: #39c;
+  }
+  75%{
+    left: 0;
+    top: calc(100% - 30px);
+    background: #224382;
+  }
+  100%{
+    left: 0;
+    top: 0;
+  }
+}
