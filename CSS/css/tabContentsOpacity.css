@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+}
+.wrapper {
+  width: 300px; height: 350px;
+  position: relative;
+}
+input[name=tabmenu] {
+  display: none;
+}
+.content {
+  position: absolute; left: 0; top: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* 이미지가 a 태그로 쌓여있을 때에는 visibility: hidden; 을 하지 않으면 매번 마지막 링크로 이동하게 됨.
+  display: block 는 존재 자체를 지우는 것이고, visibility: hidden 보이지 않게 하되 컨텐츠의 영역(크기)는 유지하도록 함.  */
+  transition: all .4s;
+}
+.btn{
+  position: absolute; left: 0; bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.btn label {
+  display: inline-block;
+  width: 20px; height: 20px;
+  background: lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#tab1:checked ~ .slide1, #tab2:checked ~ .slide2, #tab3:checked ~ .slide3{
+  opacity: 1;
+  visibility: visible;
+}
+#tab1:checked ~ .btn label[for=tab1], #tab2:checked ~ .btn label[for=tab2], #tab3:checked ~ .btn label[for=tab3]{
+  background: crimson;
+}

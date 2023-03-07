@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+}
+.wrapper {
+  width: 300px; height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+input[name=tabmenu] {
+  display: none;
+}
+.content {
+  position: absolute; left: -50px; top: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s;
+}
+.saleTxt p{
+  position: absolute; left: 20px; top: 20px;
+  width: 100px; height: 100px;
+  background: crimson;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20px;
+  box-sizing: border-box;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: all .4s;
+  
+}
+.saleTxt .txt2{
+  background: dodgerblue;
+}
+.saleTxt .txt3{
+  background: yellowgreen;
+}
+.saleTxt p span{
+  display: block;
+  font-size: 20px;
+}
+.btn{
+  position: absolute; left: 0; bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.btn label {
+  display: inline-block;
+  width: 20px; height: 20px;
+  background: lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#tab1:checked ~ .slide1, #tab2:checked ~ .slide2, #tab3:checked ~ .slide3{
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+}
+#tab1:checked ~ .saleTxt .txt1, #tab2:checked ~ .saleTxt .txt2, #tab3:checked ~ .saleTxt .txt3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: .4s;
+}
+#tab1:checked ~ .btn label[for=tab1], #tab2:checked ~ .btn label[for=tab2], #tab3:checked ~ .btn label[for=tab3]{
+  background: crimson;
+}
