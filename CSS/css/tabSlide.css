@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+}
+a {
+  text-decoration: none;
+}
+input[type=radio] {
+  display: none;
+}
+.slide-container {
+  width: 300px; height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.slides {
+  width: 900px;
+  /* img가 가지고 있는 폰트 관련 마진. font-size를 0주던지 아니면 img를 display:block 하고 flex나 float 해줘야함  */
+  font-size: 0;
+  position: absolute; left: 0; top: 0;
+  transition: all .4s;
+}
+.btn{
+  text-align: center;
+  margin-top: 10px;
+}
+.btn label{
+  display: inline-block;
+  width: 20px; height: 20px;
+  background: lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#tab1:checked ~ .slide-container .slides {
+  left: 0;
+}
+#tab2:checked ~ .slide-container .slides {
+  left: -300px;
+}
+#tab3:checked ~ .slide-container .slides {
+  left: -600px;
+}
+#tab1:checked ~ .btn label[for=tab1], #tab2:checked ~ .btn label[for=tab2], #tab3:checked ~ .btn label[for=tab3]{
+  background: crimson;
+}
