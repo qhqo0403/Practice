@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>당첨되게해주세요</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f2f2f2;
+    }
+    .wrapper {
+      width: 1000px;
+      height: 200px;
+      background: #959595;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .wrapper span {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: #fff;
+      text-align: center;
+      line-height: 150px;
+      font-size: 5rem;
+      background: crimson;
+    }
+    .wrapper span:nth-of-type(2) {
+      background: orange;
+    }
+    .wrapper span:nth-of-type(3) {
+      background: yellow;
+    }
+    .wrapper span:nth-of-type(4) { 
+      background: teal;
+    }
+    .wrapper span:nth-of-type(5) { 
+      background: dodgerblue;
+    }
+    .wrapper span:nth-of-type(6) { 
+      background: rgb(151, 53, 151);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <script>
+    const wrapper = document.querySelector('.wrapper');
+    const balls = wrapper.querySelectorAll('span');
+    
+    const printNum = () => {
+      const nums = [];
+      
+      for (let i = 1; i <= 45; i++) {
+        nums.push(i);
+      }
+      
+      balls.forEach(ball => {
+        let random = Math.floor(Math.random() * nums.length);
+        ball.innerText = nums[random];
+        nums.splice(random, 1);
+        console.log(nums);
+      }) 
+    }
+    printNum();
+
+  </script>
+</body>
+</html>
