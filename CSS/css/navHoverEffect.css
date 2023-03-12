@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Raleway, sans-serif;
+  background: #f2f2f2;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+a::before {
+  content: '';
+  position: absolute; bottom: 0;
+  height: 2px;
+  background: crimson;
+  transition: all .4s;
+}
+.effect01::before {
+  width: 0;
+  left: 0;
+}
+.effect01:hover::before {
+  width: 100%;
+}
+.effect02::before {
+  width: 0;
+  right: 0;
+}
+.effect02:hover::before {
+  width: 100%;
+}
+.effect03::before {
+  width: 2px;
+  left: 0;
+}
+.effect03:hover::before {
+  left: calc(100% - 2px);
+}
+.effect04::before {
+  width: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.effect04:hover::before {
+  width: 100%;
+}
+.effect05::before {
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.effect05:hover::before {
+  width: 0;
+}
