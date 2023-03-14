@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #f2f2f2;
+}
+.container {
+  margin-bottom: 50px;
+}
+.container p {
+  padding: 10px;
+  border-bottom: 1px dashed #555;
+}
+input[type=checkbox] {
+  display: none;
+}
+.container p label span{
+  display: inline-block;
+  width: 18px; height: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+  background: url(../img/checkbox-01.png) no-repeat;
+  background-position: left center;
+}
+.container .custom02 span {
+  background-image: url(../img/checkbox-02.png);
+}
+.container .custom03 span {
+  background-image: url(../img/checkbox-03.png);
+}
+.container input[type=checkbox]:checked + label span {
+  background-position: right center;
+}
+.radiobox input[type=radio] {
+  display: none;
+}
+.radiobox label {
+  margin-right: 8px;
+}
+.radiobox label:last-of-type {
+  margin-right: 0;
+}
+.radiobox label span {
+  display: inline-block;
+  width: 18px; height: 18px;
+  margin-right: 5px;
+  vertical-align: middle;
+  background: url(../img/radio-01.png) no-repeat;
+  background-position: left center;
+  position: relative; top: -2px;
+}
+.radiobox input[type=radio]:checked + label span {
+  background-position: right center;
+}
+label {
+  cursor: pointer;
+}
