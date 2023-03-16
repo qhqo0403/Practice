@@ -1,0 +1,77 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Raleway, sans-serif;
+  background: #f2f2f2;
+}
+.login {
+  width: 800px; 
+  padding: 25px;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.login span {
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+}
+input[type=email], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 3px;
+  background: #fff url(../img/icon-email.png) no-repeat left 10px center;
+  padding-left: 50px;
+}
+input[type=email]:hover, input[type=password]:hover {
+  box-shadow: 0 0 5px 0 dodgerblue;
+  border: 1px solid dodgerblue;
+}
+input[type=email]::placeholder, input[type=password]::placeholder{
+  opacity: 1;
+  transition: all .4s
+}
+input[type=email]:focus::placeholder, input[type=password]:focus::placeholder {
+  opacity: 0;
+  visibility: hidden;
+}
+input[type=password] {
+  background-image: url(../img/icon-lock.png);
+}
+.login p {
+  overflow: hidden;
+}
+.login p label {
+  float: left;
+  cursor: pointer;
+}
+.login p a {
+  text-decoration: none;
+  color: #222;
+  float: right;
+}
+.login p a:hover{
+  text-decoration: underline;
+}
+.login button {
+  width: 300px;
+  padding: 10px;
+  background: #2991b1;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+}
+.login button:hover {
+  background: #37839b;
+}
