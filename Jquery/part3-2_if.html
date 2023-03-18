@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jquery - if, val()</title>
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <script src="script/if.js" defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Montserrat, sans-serif;
+    }
+    .container {
+      text-align: center;
+    }
+    .login {
+      border: 1px solid #222;
+      padding: 30px;
+    }
+    .login input, .login button {
+      padding: 10px;
+      outline: none;
+    }
+    .login button {
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>JavaScript var, val(), if</h1>
+    <div class="login">
+      <h2>20세 이상 성인인증 체크 제이쿼리 if 조건문</h2>
+      <input type="text" placeholder="나이를 숫자로 입력" id="age">
+      <button>성인인증</button>
+    </div>
+  </div>
+</body>
+</html>
