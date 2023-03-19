@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+  font-family: Noto Sans, sans-serif;
+}
+.star-rating{
+  width: 250px; height: 30px;
+  background: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+.star-rating div {
+  text-align: center;
+}
+.star-rating .fa {
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+}
+.star-rating .fa.active {
+  color: yellow;
+  text-shadow: 0 0 10px yellow;
+}
+.star-rating .text{
+  color: #fff;
+}
+.star-rating .text img {
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative; top: -2px;
+}
