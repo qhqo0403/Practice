@@ -1,0 +1,43 @@
+@charset "uft-8";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
+
+body, div, ul, li {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  font-family: Montserrat, sans-serif;
+}
+.nav {
+  list-style: none;
+  position: absolute; left: 50%; top: 50%; z-index: 100;
+  transform: translate(-50%, -50%);
+}
+.nav li a{
+  text-decoration: none;
+  font-size: 4rem;
+  color: #fff;
+  position: relative;
+  font-weight: 500;
+}
+.nav li a::before {
+  content: attr(data-text);
+  color: yellowgreen;
+  width: 0;
+  position: absolute; left: 0; top: 0;
+  overflow: hidden;
+  /* 텍스트가 같기 때문에 부모와 같은 크기, before에 너비를 지정해주고 overflow hidden 걸어주면 넘치는 만큼 안보이게 할 수 있음 */
+  transition: all .6s;
+}
+.nav li a:hover::before {
+  width: 100%;
+}
+.bg {
+  width: 100%; height: 100%;
+  position: absolute; left: 0; top: 0;
+  background: url(../img/portrait-initial.jpg) no-repeat center center;
+  border-style: cover;
+  transition: all .4s;
+}
