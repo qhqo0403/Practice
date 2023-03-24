@@ -1,9 +1,10 @@
 $('.title').click(function(){
-  $(this).addClass('active')
-  $(this).siblings('.title').removeClass('active')
-  $(this).siblings('.description').stop().slideUp()
-  $(this).next().stop().slideDown()
+  $(this).siblings('.title').removeClass('active');
+  $(this).addClass('active');
 
-  let dataImage = $(this).attr('data-image')
-  $('.imgbox img').attr('src', dataImage)
-})
+  $(this).siblings('.description').stop().slideUp();
+  $(this).next('.description').stop().slideDown();
+
+  let img = $(this).attr('data-image');
+  $('.imgbox img').attr('src', img);
+});
