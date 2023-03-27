@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat, sans-serif;
+  background: #eee;
+  font-weight: 400;
+}
+.item {
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+}
+.item img {
+  transition: all .3s;
+}
+.detail {
+  position: absolute; left: 0; bottom: -176px;
+  width: 100%;
+  background: #f8f8f8;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: all .3s;
+}
+.item:hover .detail {
+  bottom: 0;
+}
+.item:hover img {
+  filter: blur(2px);
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.title h2 {
+  font-size: 16px;
+  line-height: 1.3em;
+  color: #888;
+  font-weight: normal;
+}
+.title h2>span {
+  color: #333;
+  display: block;
+}
+.title .price {
+  color: crimson;
+  font-size: 18px;
+  font-weight: bold;
+}
+.info {
+  position: relative;
+}
+.size, .colors {
+  margin-bottom: 10px;
+}
+.size h4, .colors h4{
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+.size span{
+  font-size: 12px;
+  display: inline-block;
+  width: 15px; height: 15px;
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 15px;
+  cursor: pointer;
+  transition: all .3s;
+}
+.size span:last-of-type, .colors span:last-of-type {
+  margin-right: 0;
+}
+.size span:hover, .size span.active {
+  background: black;
+  color: #fff;
+}
+.colors span {
+  display: inline-block;
+  width: 15px; height: 15px;
+  padding: 3px;
+  margin-right: 3px;
+  background: red;
+  transition: all .3s;
+}
+.colors span.active {
+  border-radius: 50%;
+}
+.colors span:nth-of-type(2) {
+  background: orange;
+}
+.colors span:nth-of-type(3) {
+  background: yellow;
+}
+.colors span:nth-of-type(4) {
+  background: teal;
+}
+.colors span:nth-of-type(5) {
+  background: dodgerblue;
+}
+.add-cart {
+  border: 1px solid #ddd;
+  width: 100%;
+  padding: 7px;
+  background: #fff;
+  cursor: pointer;
+}
+.add-cart:hover {
+  background: #333;
+  color: #fff;
+}
+.like {
+  cursor: pointer;
+}
+.like::after {
+  content: '\f08a';
+  font-family: fontawesome;
+  color: #bbb;
+  position: absolute; right: 0; top: 0;
+}
+.like.active::after {
+  content: '\f004';
+  color: crimson;
+}
