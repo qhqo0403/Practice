@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  font-family: Noto Sans KR, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: #fff;
+  font-weight: 300;
+}
+ul {
+  list-style: none;
+  margin-bottom: 40px;
+}
+a {
+  color: #fff;
+}
+.faq {
+  width: 800px;
+}
+.faq h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.accordion {
+  font-size: 20px;
+}
+.accordion h4, .accordion p {
+  padding: 10px 15px;
+  background: #303030;
+  margin-bottom: 7px;
+}
+.accordion h4 {
+  cursor: pointer;
+}
+.accordion h4:hover, .accordion h4.active {
+  background: #555;
+}
+.accordion h4::after {
+  content: '\e9c5';
+  font-family: xeicon;
+  float: right;
+  margin-top: 5px;
+  transition: all .3s;
+}
+.accordion h4.active::after {
+  transform: rotate(45deg);
+}
+.accordion p {
+  display: none;
+}
+.newsletter {
+  text-align: center;
+  font-size: 20px;
+}
+.newsletter p {
+  margin-bottom: 15px;
+}
+.email {
+  position: relative;
+}
+.newsletter input[type=email], .newsletter button {
+  height: 50px;
+  border-radius: 5px;
+  color: #fff;
+  vertical-align: middle;
+  outline: none;
+}
+.newsletter input[type=email] {
+  width: 300px;
+  border: 1px solid #333;
+  background: transparent;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.newsletter button {
+  width: 150px; 
+  background: crimson;
+  font-size: 20px;
+  border: none;
+  margin-left: 3px;
+}
+.newsletter button::after {
+  content: '\e93f';
+  font-family: xeicon;
+  display: inline-block;
+  transform: translateX(5px);
+}

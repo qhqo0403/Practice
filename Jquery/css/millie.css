@@ -36,8 +36,14 @@ body {
 .accordion h4 {
   cursor: pointer;
 }
-.accordion h4.active {
-  margin-bottom: 15px;
+.accordion h4::after {
+  content: '\f107';
+  font-family: fontawesome;
+  float: right;
+  margin-top: 4px;
+}
+.accordion h4.active::after {
+  transform: rotateX(180deg);
 }
 .accordion p {
   margin-top: 15px;
