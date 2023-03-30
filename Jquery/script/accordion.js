@@ -5,6 +5,9 @@ $('.title').click(function(){
   $(this).siblings('.description').stop().slideUp();
   $(this).next('.description').stop().slideDown();
 
-  let img = $(this).attr('data-image');
-  $('.imgbox img').attr('src', img);
+  $('.imgbox img').fadeOut(200);
+  setTimeout(() => {
+    let img = $(this).attr('data-image');
+    $('.imgbox img').attr('src', img).fadeIn(200);
+  }, 300);
 });
