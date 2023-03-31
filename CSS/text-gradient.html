@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Gradient</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+    body, p {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Raleway, sans-serif;
+      cursor: default;
+    }
+    p {
+      font-size: 8rem;
+      font-weight: bold;
+      background-image: linear-gradient(to left, #13547a 0%, #80d0c7 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+    }
+
+    /*그라디언트 관련 유용한 사이트
+    -webgradients
+    -grabient */
+  </style>
+</head>
+<body>
+  <p>No pain, No gain</p>
+</body>
+</html>
