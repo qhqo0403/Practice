@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Noto Sans KR, sans-serif;
+  font-weight: 300;
+  background: #eee;
+  color: #222;
+}
+a {
+  text-decoration: none;
+  color: #222;
+}
+header {
+  width: 100%; height: 60px;
+  background: #fff;
+  border-bottom: 1px solid lightgray;
+  padding-top: 14px;
+  box-sizing: border-box;
+}
+.logo a {
+  display: block;
+  width: 81px; height: 32px;
+  background: url(../img/logo-band.png) no-repeat center center;
+  margin:0 auto;
+}
+.container {
+  height: calc( 100vh - 60px );
+  position: relative;
+}
+.login {
+  width: 360px;
+  position: absolute; left: 50%; top: 20%;
+  transform: translateX(-50%);
+}
+.login h2 {
+  font-size: 38px;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.login .btn {
+  display: block;
+  border: 1px solid lightgray;
+  padding: 13px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  background: #fff url(../img/logo-mobile.png) no-repeat left 10px center;
+  text-align: center;
+  color: #fff;
+  opacity: 0.8;
+}
+.login .btn:hover {
+  opacity: 1;
+}
+.login a:nth-of-type(1) {
+  color: #222;
+}
+.login a:nth-of-type(2) {
+  background: #898c9b url(../img/logo-email.png) no-repeat center left 13px;
+}
+.login a:nth-of-type(3) {
+  background: #11ce00 url(../img/logo-naver.png) no-repeat center left 13px;
+}
+.login a:nth-of-type(4) {
+  background: #0076fe url(../img/logo-facebook.png) no-repeat center left 13px;
+}
+.login a:nth-of-type(5) {
+  background: #00C026 url(../img/logo-line.png) no-repeat center left 10px;
+}
+.or-txt {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  font-size: 14px;
+}
+.or-txt::before, .or-txt::after {
+  content: '';
+  position: absolute; top: 10px;
+  width: 44%; height: 1px;
+  background: lightgray;
+}
+.or-txt::before {
+  left: 0;
+}
+.or-txt::after {
+  right: 0;
+}
+
+.login-footer p {
+  margin-top: 15px;
+  text-align: center;
+}
+.login-footer a {
+  font-weight: normal;
+}
+.login-footer a:hover {
+  text-decoration: underline;
+}
