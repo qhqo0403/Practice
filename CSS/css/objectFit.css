@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div {
+  width: 400px; height: 400px;
+  border: 3px solid #555;
+  margin-right: 30px;
+}
+div:last-child {
+  margin-right: 0;
+}
+.frame01 {
+  background: url(../img/photo-02.jpg) no-repeat center center;
+  background-size: cover;
+  color: #fff;
+}
+.frame02 img {
+  width: inherit; height: inherit;
+  object-fit: cover;
+}
