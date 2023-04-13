@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anchor scroll</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js"></script>
+  <link rel="stylesheet" href="css/anchor.css">
+</head>
+<body>
+  <header>
+    <a href="#sect1">SECTION01</a>
+    <a href="#sect2">SECTION02</a>
+    <a href="#sect3">SECTION03</a>
+    <a href="#sect4">SECTION04</a>
+  </header>
+  <section id="sect1">
+    <h2>SECTION01</h2>
+    <p>TEXT</p>
+    <a href="" class="btn-top">Go to top</a>
+  </section>
+  <section id="sect2">
+    <h2>SECTION02</h2>
+    <p>TEXT</p>
+    <a href="" class="btn-top">Go to top</a>
+  </section>
+  <section id="sect3">
+    <h2>SECTION03</h2>
+    <p>TEXT</p>
+    <a href="" class="btn-top">Go to top</a>
+  </section>
+  <section id="sect4">
+    <h2>SECTION04</h2>
+    <p>TEXT</p>
+    <a href="" class="btn-top">Go to top</a>
+  </section>
+  <script>
+    $('header a, section a').click(function(e) {
+      e.preventDefault();
+      $.scrollTo(this.hash || 0, 800);
+    });
+  </script>
+</body>
+</html>
