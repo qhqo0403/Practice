@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Noto Sans KR, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+
+}
+section {
+  padding-top: 50px;
+}
+section h1 {
+  font-family: GmarketSansLight;
+  font-size: 66px;
+  text-align: center;
+  font-weight: normal;
+}
+h1 span{
+  color: deeppink;
+}
+.wrapper {
+  width: 1350px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.wrapper h2 {
+  margin-bottom: 10px;
+}
+.items {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  counter-reset: item;
+}
+.item {
+  flex: 1;
+  position: relative;
+}
+.item::before {
+  counter-increment: item;
+  content: counter(item);
+  position: absolute; left: 0; top: 0; z-index: 5;
+  width: 45px; height: 45px;
+  border-radius: 0 0 5px 0;
+  background: gray;
+  color: #fff;
+  text-align: center;
+  line-height: 45px;
+}
+.item:hover::before {
+  background: crimson;
+}
+.photo {
+  position: relative;
+  height: 390px;
+}
+.photo img {
+  width: 100%; 
+  position: absolute; left: 0; top: 0;
+  transition: all .4s;
+}
+.photo img:first-of-type {
+  z-index: 1;
+}
+.photo:hover img:first-of-type {
+  opacity: 0;
+}
+.detail {
+  position: relative;
+}
+.detail * {
+  margin-bottom: 5px;
+}
+.price strong {
+  color: crimson;
+  margin-right: 8px;
+}
+.name {
+  font-weight: normal;
+}
+.count {
+  color: #777;
+}
+.like {
+  position: absolute; right: 5px; top: 0;
+  width: 20px; height: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.like::before {
+  content: '\f08a';
+  font-family: fontawesome;
+  font-size: 18px;
+  color: #777;
+}
+.like.active::before {
+  content: '\f004';
+  color: crimson;
+}
