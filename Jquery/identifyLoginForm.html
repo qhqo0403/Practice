@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identify Login Form</title>
+  <link rel="icon" href="img/logo-favicon.png">
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <script src="script/identify.js" defer></script>
+  <link rel="stylesheet" href="css/identify.css">
+</head>
+<body>
+  <section class="login">
+    <img src="img/logo-favicon.png" alt="">
+    <h1>CodingWorks Login</h1>
+    <form>
+      <div class="input-field">
+        <input type="email" id="email" name="email" autocomplete="off" required><span>USER EMAIL</span>
+      </div>
+      <div class="input-field">
+        <input type="password" id="password" name="password" minlength="4" maxlength="8" required><span>PASSWORD</span>
+      </div>
+      <button class="submit-btn">SIGN IN</button>
+      <div class="add-info">
+        <label>
+          <input type="checkbox" id="save-email"><span></span><span>Save your Email?</span>
+        </label>
+        <a href="#">Forgot Password?</a>
+      </div>
+    </section>
+  </body>
+    </form>
+</html>
