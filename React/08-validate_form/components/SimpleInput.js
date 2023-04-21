@@ -1,57 +1,42 @@
-import { useState } from "react";
+import useInput from "../hooks/use-input";
+
+// 커스텀 훅을 사용해서 상태관리와 유효성 검증 부분을 따로 빼내서 관리할 수 있음. 코드가 더 간결해지고 중복된 로직을 제거할 수 있음.
 
 const SimpleInput = (props) => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false)
-  /* const [formIsvalid, setFormIsvalid] = useState(false); */
-
-  const enteredNameIsValid = enteredName.trim() !== '';
-  const nameInputIsInValid = !enteredNameIsValid && enteredNameTouched;
+  const {value: enteredName, isValid: enteredNameIsValid, hasError: nameInputHasError, valueChangeHandler: nameChangeHandler, inputBlurHandler: nameBlurHandler, reset: resetNameInput} = useInput(value => value.trim() !== '');
+  const {value: enteredEmail, isValid: enteredEmailIsValid, hasError: emailInputHasError, valueChangeHandler: emailChangeHandler, inputBlurHandler: emailBlurHandler, reset: resetEmailInput} = useInput(value => value.includes('@'))
 
   let formIsValid = false;
 
-  if (enteredNameIsValid) {
+  if (enteredNameIsValid && enteredEmailIsValid) {
     formIsValid = true;
   }
 
-/*   인풋이 여러개 일 때 폼 전체의 유효성 검증을 위한 useEffect
-  useEffect(() => {
-    만약 인풋이 여러개라면 의존성 배열에 추가하고 if 문에 넣어주면 됨!
-    if (enteredNameIsvalid) {
-      setFormIsvalid(true);
-    } else {
-      setFormIsvalid(false);
-    }
-  }, [enteredNameIsvalid]); */
-  
-  const nameInputChangeHandelr = (event) => {
-    setEnteredName(event.target.value);
-  };
-
-  const nameInputBlurHandler = (event) => {
-    setEnteredNameTouched(true);
-  };
-  
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    
-    setEnteredNameTouched(true);
-    // enteredName.trim().lenght === 0
-    if (!enteredNameIsValid) {
+    // 사용자가 버튼에 대한 자바스크립트 코드를 수정할 경우를 대비하는 방법 중 하나
+    if (!formIsValid) {
       return;
     }
-    setEnteredName('');
-    setEnteredNameTouched(false);
+    
+    resetNameInput();
+    resetEmailInput();
   };
   
-  const nameInputClasses = nameInputIsInValid ? 'form-control invalid' : 'form-control';
+  const nameInputClasses = nameInputHasError ? 'form-control invalid' : 'form-control';
+  const emailInputClasses = emailInputHasError ? 'form-control invalid' : 'form-control';
 
   return (
     <form onSubmit={formSubmissionHandler}>
       <div className={nameInputClasses}>
         <label htmlFor='name'>Your Name</label>
-        <input type='text' id='name' value={enteredName} onChange={nameInputChangeHandelr} onBlur={nameInputBlurHandler}/>
-        {nameInputIsInValid && <p className='error-text'>Name must not be empty.</p>}
+        <input type='text' id='name' value={enteredName} onChange={nameChangeHandler} onBlur={nameBlurHandler}/>
+        {nameInputHasError && <p className='error-text'>Name must not be empty.</p>}
+      </div>
+      <div className={emailInputClasses}>
+        <label htmlFor='email'>E-Mail</label>
+        <input type='email' id='email' value={enteredEmail} onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
+        {emailInputHasError && <p className='error-text'>Please enter a valid email.</p>}
       </div>
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
