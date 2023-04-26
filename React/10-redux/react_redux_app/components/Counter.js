@@ -1,6 +1,7 @@
 /* import { Component } from 'react'; */
 import { useDispatch, useSelector/* , connect */} from 'react-redux';
 import classes from './Counter.module.css';
+import { counterActions } from '../store';
 
 const Counter = () => {
   // 컴포넌트를 저장소와 연결해서 데이터를 받을 수 있게 해주는 메서드, 인자로 함수를 받으며 함수는 리덕스에 의해 실행됨.
@@ -12,17 +13,21 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch({type: 'increment'});
+    dispatch(counterActions.increment());
+    /* dispatch({type: 'increment'}); */
   }
   const increaseHander = () => {
-    dispatch({type: 'increase', amount: 5})
+    dispatch(counterActions.increase(5)); // 전달되는 값은 내부적으로 payload 속성에 저장되서 전달됨. payload는 정해진 이름임
+    /* dispatch({type: 'increase', amount: 5}) */
   }
   const decrementHandler = () => {
-    dispatch({type: 'decrement'});
+    dispatch(counterActions.decrement());
+    /* dispatch({type: 'decrement'}); */
   }
 
   const toggleCounterHandler = () => {
-    dispatch({type: 'toggle'})
+    dispatch(counterActions.toggleCounter());
+    /* dispatch({type: 'toggle'}) */
   };
 
   return (
