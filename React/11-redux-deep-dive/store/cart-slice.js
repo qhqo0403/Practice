@@ -8,6 +8,10 @@ const cartSlice = createSlice({
     totalQuantity: 0
   },
   reducers: {
+    replaceCart(state, action) {
+      state.items = action.payload.items;
+      state.totalQuantity = action.payload.totalQuantity;
+    },
     addItemToCart(state, action) {
       // action을 통해서 전달되는 인자의 이름은 무조건 payload!
       const newItem = action.payload;
@@ -40,6 +44,7 @@ const cartSlice = createSlice({
     }
   }
 });
+
 
 export const cartActions = cartSlice.actions;
 
