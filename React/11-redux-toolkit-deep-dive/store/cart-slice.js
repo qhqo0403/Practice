@@ -5,7 +5,8 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: [],
-    totalQuantity: 0
+    totalQuantity: 0,
+    change: false
   },
   reducers: {
     replaceCart(state, action) {
@@ -17,6 +18,7 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find(item => item.id === newItem.id);
       state.totalQuantity++;
+      state.change = true;
       if (!existingItem) {
         // 바로 푸시가 가능한건 toolkit이기 때문. 오리지널 리덕스에서는 안됨!
         state.items.push({
@@ -35,6 +37,7 @@ const cartSlice = createSlice({
       const id = action.payload;
       const existingItem = state.items.find(item => item.id === id);
       state.totalQuantity--;
+      state.change = true;
       if (existingItem.quantity === 1){
         state.items = state.items.filter(item => item.id !== id);
       } else {

@@ -4,8 +4,8 @@ import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
-import {sendCartData} from './store/cart-actions';
-// 컴포넌트가 재평가 될때마다 초기화 되지 않도록 하기위해 컴포넌트 함수 밖에 선언.
+import { sendCartData, fetchCartData} from './store/cart-actions';
+
 let isInitial = true;
 
 function App() {
@@ -13,7 +13,12 @@ function App() {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const notification = useSelector(state => state.ui.notification);
-  // 데이터를 변환해서 리덕스 저장소로 보내면, 변환 과정이 리덕스 내부에 포함되는 것이 아니라서 특정 부분은 반영이 안될 수 있음. 순서를 바꿔서 데이터 변환과정을 리덕스 내부에서 모두 수행한 후 http요청을 보내는 방식을 활용!
+
+  // 데이터를 가져오는 것은 컴포넌트가 렌더링될 때 한번만 실행하면 되기 때문에 별도의 useEffect 사용
+  useEffect(() => {
+    dispatch(fetchCartData())
+  }, [dispatch]);
+
   useEffect(() => {
 
     if (isInitial) {
@@ -21,7 +26,9 @@ function App() {
       return;
     }
 
-    dispatch(sendCartData(cart));
+    if (cart.change) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (

@@ -2,7 +2,7 @@
 import { cartActions } from "./cart-slice";
 import { uiActions } from "./ui-slice";
 
-const fetchCartData = () => {
+export const fetchCartData = () => {
   return async dispatch => {
     const fetchData = async () => {
       const response = await fetch('https://food-order-app-71988-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json');
@@ -18,13 +18,17 @@ const fetchCartData = () => {
 
     try {
       const cartData = await fetchData();
-      dispatch(cartActions.replaceCart(cartData));
-    } catch (error) {
-      dispatch(uiActions.showNotification({
-        status: 'error',
-        title: 'Error',
-        message: 'Sending cart data failed.'
+      dispatch(cartActions.replaceCart({
+        items: cartData.items || [],
+        totalQuantity: cartData.totalQuantity
       }));
+    } catch (error) {
+        dispatch(uiActions.showNotification({
+          status: 'error',
+          title: 'Error',
+          message: 'Sending cart data failed.'
+        })
+      );
     }
   }
 }
@@ -39,7 +43,7 @@ export const sendCartData = cart => {
     }));
 
     const sendRequest = async () => {
-      const response = await fetch('https://food-order-app-71988-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json', {method: 'PUT', body: JSON.stringify(cart)});
+      const response = await fetch('https://food-order-app-71988-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json', {method: 'PUT', body: JSON.stringify({items: cart.items, totalQuantity: cart.totalQuantity})});
 
       if (!response.ok) {
         throw new Error('Sending cart data failed.');
@@ -54,11 +58,12 @@ export const sendCartData = cart => {
         message: 'Sent cart data successfully!'
       }));
     } catch (error) {
-      dispatch(uiActions.showNotification({
-        status: 'error',
-        title: 'Error',
-        message: 'Sending cart data failed.'
-      }));
+        dispatch(uiActions.showNotification({
+          status: 'error',
+          title: 'Error',
+          message: 'Sending cart data failed.'
+        })
+      );
     }
   }
 };
