@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Montserrat, sans-serif;
+  background: #000;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  color: transparent;
+  text-decoration: none;
+  font-size: 10em;
+  font-weight: 500;
+  -webkit-text-stroke: 1px #fff;
+  position: relative;
+  transition: all .4s;
+}
+.btn::before, .btn::after {
+  content: attr(data-text);
+  -webkit-text-stroke: 1px transparent;
+  position: absolute; left: 0; top: 0;
+  opacity: 0;
+  transition: all .4s;
+}
+.btn::before {
+  color: royalblue;
+}
+.btn::after {
+  color: crimson
+}
+.btn:hover {
+  color: #fff;
+}
+.btn:hover::before {
+  opacity: 1;
+  transform: translate(10px, -10px);
+}
+.btn:hover::after {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}
