@@ -13,9 +13,9 @@ const router = createBrowserRouter([
     // 오류가 생겼을 때 렌더링할 페이지
     errorElement: <ErrorPage />,
     children: [
-      {path: '/', element: <HomePage />},
+      {index: true, element: <HomePage />}, //path: '/'
       {path: '/products', element: <ProductsPage />},
-      // 콜른 뒤에 오는 문자열은 동적인 경로로 같은 페이지 내에서 다른 내용을 표시할 수 있도록함. products/뒤에 어떤 주소가 오던지 같은 페이지가 계속 로딩됨 -> 제품 상세페이지, 해당 컴포넌트에서 useParams
+      // 콜른 뒤에 오는 문자열은 동적인 경로로 같은 페이지 내에서 다른 내용을 표시할 수 있도록함. products/뒤에 어떤 주소가 오던지 같은 페이지가 계속 로딩됨 -> 제품 상세페이지, 해당 컴포넌트에서 useParams 사용해야함
       {path: '/products/:productId', element: <ProductDetailPage />}
     ]
   }

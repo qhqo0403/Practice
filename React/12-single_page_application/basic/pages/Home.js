@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // 링크를 클릭이 발생했을 때 HTTP 요청을 전송하는 브라우저의 기본 설정을 막아주고 라우트 정의를 확인해서 그에 맞는 콘텐츠를 로딩함!
 
 const HomePage = () => {
-  // useNavigate훅을 사용해서 navigate를 트리거할 수 있음!
+  // useNavigate훅을 사용해서 navigate를 트리거할 수 있음
 /*   const navigate = useNavigate();
   const navigateHandler = () => {
     navigate('/products');
