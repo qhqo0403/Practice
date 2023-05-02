@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.frame {
+  display: flex;
+  gap: 40px;
+}
+.hexagon {
+  width: 400px; height: 450px;
+  position: relative;
+  transition: all .4s;
+}
+.hexagon:hover {
+  transform: translateY(-60px);
+}
+.hexagon::before {
+  content: '';
+  position: absolute; bottom: -70px;
+  width: 100%; height: 60px;
+  background: radial-gradient(rgba(0, 0, 0, 0.3), transparent, transparent);
+  transition: all .4s;
+}
+.hexagon:hover::before {
+  opacity: 0.6;
+  transform: scale(0.8);
+  bottom: -130px;
+}
+.shape {
+  width: inherit; height: inherit;
+  clip-path: polygon(50% 0, 100% 30%, 100% 70%, 50% 100%, 0 70%, 0 30%);
+  position: absolute; left: 0; top: 0;
+  overflow: hidden;
+}
+.shape img {
+  width: inherit; height: inherit;
+  object-fit: cover;
+  /* object-fit을 쓰려면 부모개체와 이미지 모두 크기값이 있어야함 */
+}
+.hexagon:nth-of-type(1) .shape img {
+  object-position: right;
+}
+.hexagon .caption {
+  position: absolute; left: 0; top: 0;
+  width: inherit; height: inherit;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: all .4s;
+  transform: translateY(20px);
+  opacity: 0;
+}
+.hexagon:hover .caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hexagon .caption h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+.hexagon:nth-of-type(1) .caption {
+  background: linear-gradient(to top, crimson, transparent);
+}
+.hexagon:nth-of-type(2) .caption {
+  background: linear-gradient(to top, royalblue, transparent);
+}
+.hexagon:nth-of-type(3) .caption {
+  background: linear-gradient(to top, yellowgreen, transparent);
+}
