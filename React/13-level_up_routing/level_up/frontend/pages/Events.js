@@ -18,7 +18,7 @@ function EventsPage() {
 
 export default EventsPage;
 
-const loadEvent = async () => {
+const loadEvents = async () => {
   const response = await fetch('http://localhost:8080/events');
 
   if (!response.ok) {
@@ -33,6 +33,6 @@ const loadEvent = async () => {
 // 데이터가 없어도 컴포넌트를 로딩하고 렌더링하고자 할 때 defer 함수를 이용해서 http 요청이 들어있는 값을 전달
 export const loader = async () => {
   return defer({
-    events: loadEvent()
+    events: loadEvents()
   });
 }
