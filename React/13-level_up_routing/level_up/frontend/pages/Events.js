@@ -1,35 +1,38 @@
-// loader 함수에서 반환한 데이터를 받아와서 쓸 수 있도록 해주는 훅, promise로부터 산출된 최종 데이터를 전달 받음
-import { useLoaderData, json } from 'react-router-dom';
+// 데이터가 도착하기 전에 컴포넌트의 일부를 렌더링하려고 하는 경우
+import { Suspense } from 'react';
+import { useLoaderData, json, defer, Await } from 'react-router-dom';
 import EventsList from '../components/EventsList';
-
+// Suspense 컴포넌트는 react 에서 임포트!! 다른 데이터가 도착하기를 기다리는 동안에 폴백을 보여주는 특정한 상황에서 사용
+//Await 컴포넌트에 데이터가 도착하면 렌더링할 항목을 추가. resolve 프로퍼티는 연기된 값 중 하나를 취함
 function EventsPage() {
-  const data = useLoaderData();
-
-/*   if (data.isError) {
-    return <p>{data.message}</p>
-  } */
-
-  const events = data.events;
+  const {events} = useLoaderData();
 
   return (
-    <EventsList events={events} />
+    <Suspense fallback={<p style={{textAlign: 'center'}}>loading...</p>}>
+      <Await resolve={events}>
+        {(loadedEvents) => <EventsList events={loadedEvents} />}
+      </Await>
+    </Suspense>
   );
 }
 
 export default EventsPage;
 
-export const loader = async () => {
+const loadEvent = async () => {
   const response = await fetch('http://localhost:8080/events');
+
   if (!response.ok) {
-    // json 함수는 json 형식의 데이터가 포함된 Response 객체를 생성해주는 함수로 데이터 변환과정이 불필요함!
     throw json({message: 'Could not fetch events.'}, {status: 500});
-    // 응답객체에 데이터를 직접 입력할 때에는 json으로 변환해줘야함!, 오류를 구분하기 위해 status 추가
-    /* throw new Response(JSON.stringify({message: 'Could not fetch events.'}), {status: 500}); */
-    /* return { isError: true, message: 'Could not fetch events.'} */
   } else {
-    return response;
-    // 라우터가 응답객체를 지원하기 때문에 추출하는 과정을 거치지 않고 바로 반환할 수 있음
-    /* const resData = await response.json();
-    return resData.events 여기에서는 events 프로퍼티를 바로 반환한 것 */
+    // loader 함수와 useloaderData 사이에 다른 함수가 있을 때에는 데이터를 직접 파싱해야함
+    const resData = await response.json();
+    return resData.events;
   }
+}
+
+// 데이터가 없어도 컴포넌트를 로딩하고 렌더링하고자 할 때 defer 함수를 이용해서 http 요청이 들어있는 값을 전달
+export const loader = async () => {
+  return defer({
+    events: loadEvent()
+  });
 }
