@@ -2,6 +2,7 @@ import { json, redirect } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 
 function AuthenticationPage() {
+
   return <AuthForm />;
 }
 
@@ -36,6 +37,17 @@ export const action = async ({request}) => {
   if (!response.ok) {
     throw json({message: 'Could not authenticate user.'}, {status: 500});
   }
+
+  const resData = await response.json();
+  const token = resData.token;
+
+  localStorage.setItem('token', token);
+  // 토큰 만료시간 지정, 백엔드에서 설정한 유효시간과 동일하게 작동하기 위해서
+  const expiration = new Date();
+  // 앞으로 1시간동안 유효
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem('expiration', expiration.toISOString());
+  
 
   return redirect('/');
 }
