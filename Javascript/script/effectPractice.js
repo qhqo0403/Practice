@@ -9,7 +9,7 @@ let speed = 0.1;
 window.addEventListener('mousemove', e => {
   x = e.pageX - (window.innerWidth / 2);
   y = e.pageY - (window.innerHeight / 2);
-  return x;
+
 });
 
 const smooth = () => {
