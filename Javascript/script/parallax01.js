@@ -32,3 +32,9 @@ const smooth = () => {
   window.requestAnimationFrame(smooth);
 }
 smooth();
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    scrollTo(0, 0);
+  }, 100)
+});
