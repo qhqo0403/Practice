@@ -12,7 +12,7 @@
 
   const resizeHandler = () => {
     maxScrollNum = document.body.scrollHeight - window.innerHeight;
-  };
+  }
 
   window.addEventListener('scroll', () => {
     let percent = scrollY / maxScrollNum;
@@ -23,9 +23,11 @@
   });
 
   window.addEventListener('mousemove', e => {
-    mousePos.x = e.pageX - (window.innerWidth / 2);
-    mousePos.y = e.pageY - (window.innerHeight / 2);
+    // pageX, pageY 로 하면 전체 페이지 수치와 연관되어있어서 시점이 돌아가버림
+    mousePos.x = e.clientX - (window.innerWidth / 2);
+    mousePos.y = e.clientY - (window.innerHeight / 2);
 
+/*     console.log(e.clientX, e.clientY, window.innerWidth / 2); */
     stage.style.transform = `rotateX(${mousePos.y / 130}deg) rotateY(${mousePos.x / 130}deg)`;
   });
 
