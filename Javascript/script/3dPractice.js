@@ -37,26 +37,25 @@
       stage.appendChild(this.charEl);
 
       this.charEl.style.left = `${position.x}%`
-
+      this.scrollState = false;
       this.init();
     };
   };
-
+  
   Character.prototype.init = function() {
-    /* console.log(this); */
-    const self = this;
     window.addEventListener('scroll', () => {
-      self.charEl.classList.add('running');
-    })
-  }
-/*   console.log(Character.prototype); */
-  // 메서드만 추가하는게 아니라 포로토타입 객체를 새로 정의할 때 사용하는 방식 -> constructor를 정의해줘야함!
-/*   Character.prototype = {
-    constructor: Character,
-    init : function() {
+      clearTimeout(this.scrollState);
+
+      if (!this.scrollState) {
+        this.charEl.classList.add('running');
+      };
       
-    }
-  } */
+      this.scrollState = setTimeout(() => {
+        this.scrollState = false;
+        this.charEl.classList.remove('running');
+      }, 500);
+    });
+  };
 
   stage.addEventListener('click', e => {
     new Character({
