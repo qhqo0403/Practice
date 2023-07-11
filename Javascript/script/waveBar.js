@@ -1,24 +1,26 @@
 const wrapper = document.querySelector('.wrapper');
-const flowers = [];
-let flower;
+const bars = [];
+let bar;
 
 for (let i = 0; i < 60; i++) {
   bar = document.createElement('div');
-  bar.className = 'flower';
-  wrapper.append(flower);
-  bars.push(flower);
+  bar.className = 'bar';
+  wrapper.append(bar);
+  bars.push(bar);
 }
 
 const keyframes = [
-  { transform: 'rotate(0)' },
-  { transform: 'rotate(15deg)' },
+  { transform: 'scaleY(0)' },
+  { transform: 'scaleY(1)' },
 ];
 const options = {
   duration: 1000,
   iterations: Infinity,
+  direction: 'alternate',
+  fill: 'both',
   easing: 'ease-in-out'
 }
 
-flowers.forEach((flower, idx) => {
+bars.forEach((bar, idx) => {
   bar.animate(keyframes, {...options, delay: idx * 100});
 });
