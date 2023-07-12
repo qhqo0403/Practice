@@ -19,8 +19,29 @@ const options = {
   direction: 'alternate',
   fill: 'both',
   easing: 'ease-in-out'
-}
+};
+
+// 그룹으로 애니메이션 컨트롤
+const effects = [];
 
 bars.forEach((bar, idx) => {
-  bar.animate(keyframes, {...options, delay: idx * 100});
+  const newOptions = {...options, delay: idx * 100};
+  const effect = new KeyframeEffect(bar, keyframes, newOptions);
+  effects.push(effect);
 });
+
+const groupEffect = new GroupEffect(effects);
+const animation = document.timeline.play(groupEffect);
+
+window.setTimeout(() => {
+  animation.pause();
+}, 10000);
+/* bars.forEach((bar, idx) => {
+  bar.animate(keyframes, {...options, delay: idx * 100});
+}); */
+
+// 순차적으로 애니메이션 재생하기 (iteration 횟수 제한이 있을 때, delay 속성이 필요 없어짐!)
+
+/* const sequenceEffect = new SequenceEffect(effects);
+const animation = document.timeline.play(sequenceEffect);
+ */
