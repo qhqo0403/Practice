@@ -2,7 +2,7 @@
 // 객체를 만드는 방법은 두 가지! 변수에 애너테이션을 선언하는 것처럼 만들거나 함수를 만들어서 매개변수 애너테이션으로 선언
 
 // 매개변수 선언 방식
-const printName = (person: {first: string, last: string}): void => {
+const printName = (person: {first: string; last: string;}): void => {
   console.log(`${person.first} ${person.last}`);
 };
 printName({first: "Chris", last: "Hemsworth"});
@@ -18,10 +18,10 @@ printName(thunder); // 오류는 발생하지 않음!
 // 변수에 할당하는 방식은 값이 맞는지 재확인하도록 만듦. 객체 리터럴 방식은 쓰는 동시에 확인
 
 // 변수 선언 방식
-let coordinate: {x: number, y: number} = {x: 28, y: 30};
+let coordinate: {x: number; y: number;} = {x: 28, y: 30};
 
 // 함수 선언 방식
-function randomCoordinate(): {x: number, y:number} {
+function randomCoordinate(): {x: number; y:number} {
   return {x: Math.random(), y: Math.random()};
 };
 /* 
@@ -34,7 +34,7 @@ const randomCoordinate = (): {x: number, y:number} => {
 // 여러 프로퍼티를 가지는 객체타입에서 활용
 
 // 관례적으로 첫 글자는 대문자를 사용, 객체의 패턴
-type Point = {x: number, y: number};
+type Point = {x: number; y: number};
 
 const coordinatetwo: Point = {x: 28, y: 30};
 
@@ -49,12 +49,12 @@ const doublePoint = (point: Point): Point  => {
 
 // 중첩 객체와 앨리어스
 type Song = {
-  title: string,
-  artist: string,
-  numStreams: number,
+  title: string;
+  artist: string;
+  numStreams: number;
   credits: {
-    producer: string,
-    writer: string
+    producer: string;
+    writer: string;
   }
 };
 
@@ -82,7 +82,7 @@ printSong(mySong);
 
 
 // 선택적 프로퍼티 : 키? 의 형태
-type Point3D = {x: number, y: number, z?: number};
+type Point3D = {x: number; y: number; z?: number};
 
 const myPoint: Point3D = {x: 6, y: 8}
 
@@ -91,8 +91,8 @@ const myPoint: Point3D = {x: 6, y: 8}
 // readonly가 적용된 프로퍼티의 값이 배열이나 객체일 경우에는 값을 변경할 수 있음 -> 참조값이기 때문, 원시값의 경우에만 값 변경 불가
 
 type User = {
-  readonly id: number,
-  name: string
+  readonly id: number;
+  name: string;
 };
 
 const user: User = {
@@ -104,10 +104,10 @@ const user: User = {
 
 // 교차 타입(intersection type) : & 를 사용해서 여러 type 연결
 type Circle = {
-  radius: number
+  radius: number;
 };
 type Color = {
-  color: string
+  color: string;
 };
 const colorfulCircle: Circle & Color = {
   radius: 10,

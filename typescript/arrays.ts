@@ -10,8 +10,8 @@ numList[0] = 12;
 
 // 커스텀 배열 타입
 type Point = {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 };
 
 const coords: Point[] = [];

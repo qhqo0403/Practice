@@ -1,14 +1,14 @@
 // Write the Movie type alias to make the following two variables properly typed
 // Make sure that "originalTitle" is optional and "title" is readonly
 type Movie = {
-  readonly title: string,
-  originalTitle?: string,
-  director: string,
-  releaseYear: number,
+  readonly title: string;
+  originalTitle?: string;
+  director: string;
+  releaseYear: number;
   boxOffice: {
-    budget: number,
-    grossUS: number,
-    grossWorldwide: number
+    budget: number;
+    grossUS: number;
+    grossWorldwide: number;
   }
 };
 

@@ -16,7 +16,7 @@ const gameBoard: string[][] = [];
 // An example product could be:
 // {name: "coffee mug", price: 11.50}
 type Product = {
-  name: string,
+  name: string;
   price: number
 };
 // **********************************************
