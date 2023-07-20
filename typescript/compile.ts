@@ -39,4 +39,7 @@
 
 ★ noEmitOnError (compilerOptions 내의 속성)
   : typescript 내의 오류가 있으면 컴파일 되지 않도록 하는 속성
+
+★ lib (compilerOptions 내의 속성)
+  : 타입설정 라이브러리에 관한 속성. dom 은 기본값
  */
