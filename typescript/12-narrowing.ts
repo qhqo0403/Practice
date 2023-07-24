@@ -104,3 +104,59 @@ const makeNoise = (pet: Cat | Dog): void => {
     console.log('Woof');
   }
 };
+
+
+// 판별 유니온(discriminated unions) : 공통적인 프로퍼티에 리터럴값을 부여해서 구분
+// 소진검사(exhaustiveness check)와 Never : switch문의 default 값을 만들어서 새로운 코드를 작성하고 그에 대한 처리가 누락되었을 때 오류를 발생시키도록 만듦 -> never 는 반환값을 만들지 않기 때문
+interface Rooster {
+  kind: "rooster";
+  name: string;
+  weight: number;
+  age: number;
+};
+interface Cow {
+  kind: 'cow';
+  name: string;
+  weight: number;
+  age: number;
+};
+interface Pig {
+  kind: 'pig';
+  name: string;
+  weight: number;
+  age: number;
+};
+// 추가코드
+interface Sheep {
+  kind: 'sheep';
+  name: string;
+  weight: number;
+  age: number;
+}
+
+type FarmAnimal = Rooster | Cow | Pig | Sheep;
+
+const getFarmAnimalSound = (animal: FarmAnimal) => {
+  switch(animal.kind) {
+    case "rooster":
+      return "Cockadoodledoo!";
+    case "cow":
+      return "Moooooo!";
+    case "pig":
+      return "Oink!";
+    case "sheep":
+      return "Baaa!";
+    default:
+      const _exhaustiveCheck: never = animal;
+      return _exhaustiveCheck;
+  }
+};
+
+const stevie: Rooster = {
+  kind: 'rooster',
+  name: 'stevie',
+  weight: 2,
+  age: 1.5
+};
+
+getFarmAnimalSound(stevie);
