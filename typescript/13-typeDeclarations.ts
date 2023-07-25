@@ -57,3 +57,8 @@ function printUser(user: User) {
   console.log(user.email);
   console.log(user.phone);
 }
+
+
+// 기본으로 타입 정의 파일이 없다면 따로 설치해줘야함
+// npm install --save-dev @types/패키지이름 -> 거의 다 설치가 되겠지만 DefinitelyTyped 에 있는지 확인하거나 typescript 공식문서에서 검색해보긴 해야함!
+// --save-dev 인 이유는 typescript가 프로덕션 단계에서는 거의 필요가 없기 때문
