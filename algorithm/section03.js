@@ -15,3 +15,62 @@
 // 구체적 예시 찾기 -> 문제를 이해하는데에 도움이 됨
 
 // 세부 분석 -> 수행해야하는 단계를 적어보기, 빈 값이 입력되는 상황은 항상 가정하기
+
+// 문제 해결 or 단순화 -> 예시를 찾고 분석을 끝낸 후 바로 해결할 수 있으면 하고 안되면 어려운 부분 넘기고 단순한 부분부터 다시 집중하기
+
+// 리팩토링 -> 더 나은 성능, 속도, 접근법 등이 있는지 고민. 다른 해결책과 비교해보기. 이전에 풀었던 문제들과는 어떤 유사점이 있는지
+
+
+// 예시 : 문자열을 받아서 해당 문자열의 갯수가 담긴 객체를 반환하는 함수
+
+const charCount = (str) => {
+  const obj = {};
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i].toLowerCase();
+    if (/[a-z0-9]/.test(char)) {
+      if (obj[char] > 0) {
+        obj[char]++;
+      } else {
+        obj[char] = 1;
+      }
+    }
+  }
+  return obj;
+}
+
+const charCount01 = (str) => {
+  const obj = {};
+  for (let char of str) {
+    if (/[a-z0-9]/.test(char)) {
+      char = char[i].toLowerCase();
+      if (obj[char] > 0) {
+        obj[char] = ++obj[char] || 1;
+      }
+    }
+  }
+  return obj;
+}
+// 정규 표현식이 직접 비교하는 것보다 성능이 떨어질 수 있음.
+
+const isAlphaNumeric = (char) => {
+  const code = char.charCodeAt(0);
+  if (!(code > 45 && code < 58 ) // nemeric (0-9)
+    && !(code > 64 && code < 91) // upper alpha (A-Z)
+    && !(code > 96 && code < 123)) { // lower alpha (a-z)
+      return false;
+    }
+  return true;
+}
+
+const charCount02 = (str) => {
+  const obj = {};
+  for (let char of str) {
+    if (isAlphaNumeric(char)) {
+      char = char[i].toLowerCase();
+      if (obj[char] > 0) {
+        obj[char] = ++obj[char] || 1;
+      }
+    }
+  }
+  return obj;
+}
