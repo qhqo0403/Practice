@@ -180,4 +180,50 @@ function maxSubarraySum(arr, num){
 }
 
 
-// 남은 두 문제는 나중에 다시보기!
+// Sliding Window - findLongestSubstring : 문자열을 인수로 받는 함수에서 중복되지 않는 글자들의 최대 길이를 구함
+function findLongestSubstring(str){
+  // 글자수가 0 이면 0
+  if (str.length === 0) {
+      return 0;
+  }
+  // 저장할 곳. 각 글자와 자릿수 저장.
+  const letters = {}
+  // 새로 시작한 길이와 이전 길이를 비교할 변수
+  let startPoint = 0;
+  let longest = 0;
+  
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    // 객체안에 이미 글자가 있다면
+    if (letters[char]) {
+        // 해당 글자의 자리수를 startPoint로
+        startPoint = Math.max(startPoint, letters[char])
+    }
+    // 
+    longest = Math.max(longest, i - startPoint + 1);
+    letters[char] = i + 1;
+  }
+  return longest;
+}
+
+// 강의 솔루션
+function findLongestSubstring(str) {
+  let longest = 0;
+  let seen = {};
+  let start = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (seen[char]) {
+      start = Math.max(start, seen[char]);
+    }
+    // index - beginning of substring + 1 (to include current in count)
+    longest = Math.max(longest, i - start + 1);
+    // store the index of the next char so as to not double count
+    seen[char] = i + 1;
+  }
+  return longest;
+}
+
+
+// 남은 한 문제는 나중에 다시보기!
