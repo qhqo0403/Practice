@@ -1,0 +1,7 @@
+// 파일의 기본 경로를 src 폴더로 지정
+/* {
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+} */
