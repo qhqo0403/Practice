@@ -38,3 +38,23 @@ function binarySearch(arr, n){
   }
   return arr[mid] === n ? mid : -1;
 }
+
+
+// 나이브 문자열 검색 (naive string search) : 긴 문자열에서 부문 문자열을 검색
+
+// 연습문제 : 긴 문자열과 특정 패턴 문자열을 인자로 받고 패턴 문자열이 긴 문자열에 몇 번이나 등장하는지 카운트하는 함수
+function naiveSearch(str1, str2) {
+  let count = 0;
+
+  for (let i = 0; i < str1.length; i++) {
+    for (let j = 0; j < str2.length; i++) {
+      if (str2[j] !== str1[i + j]) {
+        break;
+      }
+      if (j === str2.length - 1) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
