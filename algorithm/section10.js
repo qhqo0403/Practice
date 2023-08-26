@@ -34,10 +34,10 @@ const swapV2 = (arr, idx1, idx2) => {
 function bubbleSort(arr) {
   for (let i = arr.length; i > 0; i--) { // 끝부터 시작하는 이유는 항목수가 감소하기 때문! 처음부터 시작하면 불필요한 과정이 매번 반복됨w
     for (let j = 0; j < i - 1; j++) {
-      if (arr[j] > arr[i + 1]) {
+      if (arr[j] > arr[j + 1]) {
         let temp = arr[j];
-        arr[j] = arr[i + 1];
-        arr[i + 1] = temp;
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
       }
     }
   }
@@ -50,8 +50,8 @@ const bSort = arr => {
   }
   for (let i = arr.length; i > 0; i--) {
     for (let j = 0; j < i - 1; j++) {
-      if (arr[j] > arr[i - 1]) {
-        swap(arr, j, i + 1);
+      if (arr[j] > arr[j + 1]) {
+        swap(arr, j, j + 1);
       }
     }
   }
@@ -65,10 +65,10 @@ function bubbleSortOptimize(arr) {
   for (let i = arr.length; i > 0; i--) {
     noSwap = true;
     for (let j = 0; j < i - 1; i++) {
-      if (arr[j] > arr[i + 1]) {
+      if (arr[j] > arr[j + 1]) {
         let temp = arr[j];
-        arr[j] = arr[i + 1];
-        arr[i + 1] = temp;
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
         noSwap = false;
       }
     }
