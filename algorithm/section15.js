@@ -18,10 +18,10 @@ function pivot(arr, start = 0, end = arr.length - 1) {
   for (let i = start + 1; i <= end; i++) { // 피벗포인트와 그 다음 요소를 비교하기 위해서 start + 1
     if (pivot > arr[i]) { // 피벗 포인트보다 작은 값이 있다면 swapIdx 를 1씩 증가시킨 다음 그 위치에 있던 값과 스왑
       swapIdx++;
-      swap(arr, swapIdx, i);
+      swap(arr, swapIdx, i); // 피벗 포인트보다 작은 값들을 왼쪽으로 이동시키고
     }
   }
-  swap(arr, start, swapIdx); // 작은 값들의 이동이 끝나고 난 후 피벗 포인트 스왑
+  swap(arr, start, swapIdx); // 작은 값들의 이동이 끝나고 난 후 작은 값들의 제일 마지막 값과 피벗 포인트 스왑
   return swapIdx; // 배열을 반환하는 것이 아니라 인덱스를 반환함
 };
 
