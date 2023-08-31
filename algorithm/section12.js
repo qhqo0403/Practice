@@ -9,10 +9,10 @@ function insertionSort(arr){
 	var currentVal;
     for(var i = 1; i < arr.length; i++) { // 1부터 시작하는 이유는 배열의 첫번 째 요소를 정렬된 요소로 간주하기 때문
         currentVal = arr[i];
-        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) { // i 번째 이하의 요소들과 비교해야하기 때문에 i - 1
-            arr[j + 1] = arr[j]
+        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) { // i 번째 이하의 요소들과 비교해야하기 때문에 i - 1, arr[j]가 currentVal 보다 클 때만 반복문 실행
+            arr[j + 1] = arr[j] // arr[j] 가 currentVal 보다 크면 한 칸 앞(오른쪽)으로 이동
         }
-        arr[j + 1] = currentVal;
+        arr[j + 1] = currentVal; // 올바른 위치에 값을 옮겨줌
     }
     return arr;
 }
