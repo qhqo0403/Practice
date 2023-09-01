@@ -25,3 +25,21 @@ function mostDigits(nums) {
   }
   return maxDigits;
 }
+
+function radixSort(nums) {
+  const maxDigitCount = mostDigits(nums); // 배열 내의 최대 자릿수 구하기
+  for (let k = 0; k < maxDigitCount; k++) { // 요소들을 버킷내에 넣었다 빼는 수 = maxDigitCount
+    let digitBuckets = Array.from({length: 10}, () => []); // 하나의 버킷(빈 배열)을 담고 있는 전체 배열 생성
+    for (let i = 0; i < nums.length; i++) { // nums 배열 안에 모든 요소들에 대하여 반복문 실행
+      let digit = getDigit(nums[i], k); // 자릿수 k 에 따라서 해당 배열 요소의 자릿수에 어떤 숫자가 있는지 구함
+      digitBuckets[digit].push(nums[i]); // 숫자에 알맞는 버킷에 넣기
+    }
+    nums = [].concat(...digitBuckets); // nums 에 배열을 재할당.
+  }
+  return nums;
+}
+
+// 기수정렬의 빅오표기 : 시간 복잡도는 평균, 최적, 최악의 상황에서 모두 O(nk), 공간 복잡도는 O(n + k);
+// n은 배열의 길이(정렬하려는 갯수), k는 수의 자릿수 -> k 가 커질수록(수의 자릿수가 커질수록) 시간에 많은 영향을 끼칠수 있음
+// 기수정렬은 다른 비교정렬보다는 빠르지만 컴퓨터가 숫자를 저장하는 방식에 제한으로 인해 k 가 log n 이 될수도 있음 -> log n 이 된다면 n log n 으로 다른 비교 정렬과 같을 수 있다.
+// 공간복잡도는 강의에서 나오진 않았지만 추측하건데 자릿수만큼 배열들을 만들기 때문이라고 생각!
