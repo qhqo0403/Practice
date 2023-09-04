@@ -10,8 +10,33 @@ class Student {
   constructor(firstName, lastName) { // 생성자 함수
     this.firstName = firstName; // 생성자 함수의 속성(프로퍼티)는 객체가 인스턴스화 될 때 객체의 속성으로 
     this.lastName = lastName;
+    this.absence = 0;
+    this.scores = [];
+  }
+  
+  FullName() {
+    return `Your full name is ${this.firstName} ${this.lastName}.`;
+  }
+  markLate() {
+    this.absence++;
+    if (this.absence >= 3) {
+      return "You are expelled!";
+    }
+    return `${this.firstName} ${this.lastName} has been late ${this.absence} times.`;
+  }
+  addScore(score) {
+    this.scores.push(score);
+    return this.scores;
+  }
+  calculateAverage() {
+    let sum = this.scores.reduce((a, b) => a + b);
+    return Math.floor(sum / this.scores.length);
   }
 }
 
 const firstStudent = new Student('Chris', 'Hemsworth'); // 클래스를 만들었다고 객체가 생성되는 것은 아니기 때문에 new 키워드를 통해서 클래스를 호출하면 객체가 생성됨
 // new 키워드를 통해 클래스를 호출하면 클래스에 정의된 생성자 함수가 동작함
+// 메서드 앞에 static을 쓰면 개별 인스턴스에서는 생성되지 않고 class를 통해서만 호출할수 있는 메서드를 정의할 수 있고, 개별 인스턴스에서는 호출할 수 없음 ex) Student.~~~~() 
+// getter 와 setter 는 메서드처럼 정의하지만 속성임!
+// setter 는 특정 프로퍼티의 값을 바꿀 때 조건을 추가할 수 있도록 함
+// 보통 getter 와 setter 의 이름은 같은 이름을 사용함. getter와 setter를 통해서 특정 조건에 부합한다면 속성값이나 프라이빗 값에 접근하도록 만들 수 있음.
