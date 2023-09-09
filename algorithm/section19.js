@@ -134,7 +134,7 @@ class DoublyLinkedList {
     if (index === this.length - 1) return this.pop();
 
     let removedNode = this.get(index);
-    removedNode.prev.next = removedNode.next;
+    removedNode.prev.next = removedNode.next; // insert에서 before, after 변수를 따로 만들었던 것처럼 해도 됨
     removedNode.next.prev = removedNode.prev;
     removedNode.prev = null;
     removedNode.next = null;
@@ -142,3 +142,6 @@ class DoublyLinkedList {
     return removedNode;
   };
 };
+
+// 양방향 연결 리스트의 빅오표기 : 노드의 삽입은 O(1), 삭제는 O(1), 검색과 접근은 O(n)
+// 탐색의 경우 양방향 이동이 가능하기 때문에 n / 2 로도 볼수는 있지만 결국에는 O(n)이 됨
