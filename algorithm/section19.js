@@ -72,5 +72,73 @@ class DoublyLinkedList {
     }
     this.length++;
     return this;
+  };
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let count = 0;
+    let current;
+    if (index <= Math.floor(this.length / 2)) { // 인덱스가 리스트의 중간지점 보다 작거나 같을 경우 헤드부터 탐색 시작
+      count = 0;
+      current = this.head;
+      while (index !== count) {
+        current = current.next;
+        count++;
+      };
+    } else { // 인덱스가 리스트의 중간지점보다 클 경우 테일부터 탐색 시작
+      count = this.length - 1;
+      current = this.tail;
+      while (index !== count) {
+        current = current.prev;
+        count--;
+      };
+    };
+    return current;
+  };
+
+  set(index, val) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      this.unshift(val);
+      return true;
+    };
+    if (index === this.length) {
+      this.push(val);
+      return true;
+    };
+
+    let newNode = new Node(val);
+    let beforeNode = this.get(index - 1);
+    let afterNode = beforeNode.next;
+
+    beforeNode.next = newNode;
+    newNode.prev = beforeNode;
+    afterNode.prev = newNode;
+    newNode.next = afterNode;
+    this.length++;
+    return true;
+  };
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let removedNode = this.get(index);
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+    removedNode.prev = null;
+    removedNode.next = null;
+    this.length--;
+    return removedNode;
+  };
 };
