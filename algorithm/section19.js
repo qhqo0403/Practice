@@ -141,6 +141,24 @@ class DoublyLinkedList {
     this.length--;
     return removedNode;
   };
+
+  reverse() { // 연습삼아 만듦. 단방향 리스트와 다르게 테일부터 거꾸로 올라가는게 가능해짐! 테일이 헤드가 되는 방향
+    let node = this.tail;
+    this.tail = this.head;
+    this.head = node;
+
+    let next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.prev;
+      node.prev = prev;
+      node.next = next;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 };
 
 // 양방향 연결 리스트의 빅오표기 : 노드의 삽입은 O(1), 삭제는 O(1), 검색과 접근은 O(n)
