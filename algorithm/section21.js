@@ -66,4 +66,27 @@ class BinarySearchTree {
     if (!found) return undefined; // 찾고자하는 값이 없을 때 undefined
     return current;
   };
+
+  contains(val) { // 트리에 특정 노드가 있는지 불리언을 반환하는 메서드, find 와 로직이 같고 불리언을 반환한다는 것만 다름
+    if (!this.root) return false;
+    let current = this.root;
+    let found = false;
+    while (current && !found) {
+      if (val < current.val) {
+        current = current.left;
+      } else if (val > current.val) {
+        current = current.right;
+      } else {
+        return true;
+      };
+    };
+    return false;
+  };
 };
+
+
+// 이진 검색 트리의 빅오표기 : 최고와 평균의 경우 삽입과 검색 모두 O(log n)
+// 이진 검색 트리는 데이터가 정렬되어 있기 때문에 시간 복잡도의 효율이 높다!
+// 노드의 갯수가 2배로 증가해도 수행해야하는 작업은 1개씩 증가 -> log!
+// 하지만 트리의 구성에 따라서 O(log n)이 보장되지 않을 수 있음
+// 한 쪽으로 치우친 형태의 트리나 정렬되어 있긴 하지만 삽입과 검색을 위해서 전체 노드를 순회해야하는 경우가 있을 수도 있음! -> 그럴때는 트리의 구조를 다시 만들거나 다른 데이터 구조를 사용하는게 더 낫다!
