@@ -11,3 +11,42 @@
 
 // 이진 검색 트리 (Binary search tree) : 노드의 데이터를 특정한 순서대로 저장함. 노드들을 비교하여 정렬할 기준이 필요
 // 부모 노드의 왼쪽에 있는 자식노드는 항상 부모노드 보다 작고 오른쪽에 있는 자식노드는 부모노드보다 큼
+
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  };
+};
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  };
+
+  insert(val) { // 새로운 노드를 추가하는 메서드
+    let newNode = new Node(val);
+    if (!this.root) { // 루트가 비어있다면
+      this.root = newNode; // 새 노드를 루트로 할당
+      return this;
+    };
+    let current = this.root; // 루트가 있을 경우 루트에서부터 탐색 시작
+    while(true) { // 반복문 내부에서 조건에 맞으면 실행한 후 return 하기 때문에 값을 찾을 때까지 계속 반복문을 실행하도록 실행 조건을 true로 설정
+      if (val === current.val) return undefined; // 같은 값을 입력받았을 경우 undefined 출력. 다른 방법으로는 같은 방법이 들어왔을 때 카운터 해주는 변수를 추가해서 표시할수도 있음
+      if (val < current.val) { // 새로 추가하는 값이 current 의 값보다 작을 경우 current의 left 방향을 탐색. 
+        if (!current.left) { // left 가 비어있다면
+          current.left = newNode;  // 바로 할당
+          return this;
+        };
+        current = current.left; // 비어있는 left를 찾을 때까지 current.left 를 탐색
+      } else { // 새로 추가하는 값이 current 보다 클 경우 current 의 right 방향을 탐색
+        if (!current.right) { // 비어있다면
+          current.right = newNode; // right 에 바로 할당
+          return this;
+        };
+        current = current.right; // 이미 값이 있을 경우 비어있는 자리를 찾을 때까지 오른쪽으로 내려감
+      };
+    };
+  };
+};
