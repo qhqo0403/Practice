@@ -49,4 +49,21 @@ class BinarySearchTree {
       };
     };
   };
+
+  find(val) { // 노드를 찾는 메서드
+    if (!this.root) return false; // 트리가 비어있다면 false 출력
+    let current = this.root; // 루트부터 시작
+    let found = false; // 찾고자하는 노드를 찾았을 때 반복문을 종료시킬수 있도록 불리언 변수 선언
+    while (current && !found) {
+      if (val < current.val) { // 찾고자 하는 값이 current보다 작을 때
+        current = current.left;
+      } else if (val > current.val) { // 찾고자 하는 값이 current보다 클 때
+        current = current.right;
+      } else { // 값을 찾았다면 found 를 true로 바꾸면서 반복문 종료
+        found = true;
+      };
+    };
+    if (!found) return undefined; // 찾고자하는 값이 없을 때 undefined
+    return current;
+  };
 };
