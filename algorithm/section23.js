@@ -33,4 +33,47 @@ class MaxBinaryHeap {
     };
   };
 
-}
+  extractMax() { // 최댓값을 제거하는 메서드 (min binary heap 에서는 최솟값). 최댓값을 제거하고 배열 내의 마지막 값을 배열의 첫번째 자리로 옮긴 후, 자식들과의 값 비교를 통해 제자리를 찾아감
+    const max = this.values[0]; // 최대 이진힙에서는 루트의 값이 가장 크기 때문에 배열의 맨 첫번째 값을 변수로 저장
+    const end = this.values.pop(); // pop을 통해 추출한 마지막 요소를 변수로 저장
+    if (this.values.length > 0) { // 배열의 요소가 1개 남았을 때에는 요소를 저장하고 다시 삽입하는 과정이 반복되기 때문에 빈 배열이 되었을 경우에는 실행하지 않도록함
+      this.values[0] = end; // 배열의 첫 번째 자리에 마지막 요소 덮어쓰기
+      this.sinkDown(); // 제자리를 찾아가도록 메서드 실행
+    }
+    return max;
+  };
+
+  sinkDown() { // 이동된 노드가 자식 노드들과의 비교를 통해 알맞은 자리로 찾아가는 메서드! 자식들의 값을 비교해서 더 큰 값과 교환함
+    const length = this.values.length;
+    const element = this.values[0]; // 마지막에서 맨 앞으로 이동된 요소(노드)
+    let idx = 0; // 현재의 인덱스를 저장
+    while (true) {
+      let leftChildIdx = (idx * 2) + 1; // 왼쪽 자식노드
+      let rightChildIdx = (idx * 2) + 2; // 오른쪽 자식노드
+      let leftChild, rightChild; // 선언만 하는 이유는 인덱스가 배열의 길이보다 클 경우 undefined 가 출력되기 때문
+      let swapIdx = null; // 비교를 통해 변경될 인덱스를 저장하는 변수
+
+      if (leftChildIdx < length) { // 왼쪽 자식의 인덱스가 유효하다면
+        leftChild = this.values[leftChildIdx]; // 변수에 할당하고
+        if (leftChild > element) { // 왼쪽 자식이 element 보다 값이 크다면
+          swapIdx = leftChildIdx; // 왼쪽 자식의 인덱스를 저장
+        };
+      };
+
+      if (rightChildIdx < length) { // 오른쪽 자식의 인덱스가 유효하다면
+        rightChild = this.values[rightChildIdx]; // 변수에 할당
+        if ((swapIdx === null && rightChild > element) || (swapIdx !== null && rightChild > leftChild)) {
+          // 첫 번째 조건 : swapIdx가 null(왼쪽 자식이 element 보다 작고)이고 오른쪽 자식이 element 보다 크다면
+          // 두 번째 조건 : swapIdx가 null이 아니고(왼쪽 자식이 element보다 클 경우) 오른쪽 자식이 왼쪽 자식보다 클 경우
+          swapIdx = rightChildIdx; // 오른쪽 자식의 인덱스를 저장
+        };
+      };
+
+      if (swapIdx === null) break; // element의 값이 클 경우 swapIdx에 다른 값이 할당되지 않으면서 반복문이 종료
+
+      this.values[idx] = this.values[swapIdx]; // element와 자식 요소 교환
+      this.values[swapIdx] = element;
+      idx = swapIdx; // 교환한 자리의 인덱스를 idx 에 저장 -> 계속 자식 노드와 비교해야하기 때문!
+    };
+  };
+};
