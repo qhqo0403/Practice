@@ -77,3 +77,85 @@ class MaxBinaryHeap {
     };
   };
 };
+
+
+// 우선순위 큐 (Priority queue) : 우선순위를 가지는 데이터들의 모임
+// 높은 우선순위를 가진 요소가 먼저 처리 됨 -> 서로 다른 우선순위를 가진 데이터나 정보를 처리할 때 사용
+// 낮은 숫자가 높은 우선순위를 의미함
+// 배열이나 리스트에서 우선순위 큐를 사용한다면 우선순위에 따라서 요소를 처리해야 하기때문에 전체 요소를 순환하는 것이 불가피함 -> 시간 복잡도가 커짐
+// 이진 힙을 사용하는 우선순위 큐는 O(log n) -> 힙과 우선순위 큐는 별개임! 별개지만 우선순위큐를 구현할때 힙의 방식을 사용하거나 배열을 사용하는 등??
+
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority; // 우선순위로 트리 구조를 정렬
+  };
+};
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  };
+
+  enqueue(val, priority) {
+    let newNode = new Node(val, priority);
+    this.values.push(newNode);
+    this.bubbleUp();
+  };
+
+  bubbleUp() {
+    let idx = this.values.length - 1;
+    let element = this.values[idx];
+    while (idx > 0) {
+      let parentIdx = Math.floor((idx - 1) / 2);
+      let parent = this.values[parentIdx];
+      if (element.priority >= parent.priority) break;
+      this.values[parentIdx] = element;
+      this.values[idx] = parent;
+      idx = parentIdx;
+    };
+  };
+
+  dequeue() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDown();
+    };
+    return min;
+  };
+
+  sinkDown() {
+    const length = this.values.length;
+    const element = this.values[0];
+    let idx = 0;
+    while (true) {
+      let leftChildIdx = (idx * 2) + 1;
+      let rightChildIdx = (idx * 2) + 2;
+      let leftChild, rightChild;
+      swapIdx = null;
+
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx];
+        if (leftChild.priority < element.priority) {
+          swapIdx = leftChildIdx;
+        };
+      };
+
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+        if ((swapIdx === null && rightChild.priority < element.priority) || (swapIdx !== null && rightChild.priority < leftChild.priority)) {
+          swapIdx = rightChildIdx;
+        };
+      };
+
+      if (swapIdx === null) break;
+
+      this.values[idx] = this.values[swapIdx];
+      this.values[swapIdx] = element;
+      idx = swapIdx;
+    };
+  };
+
+};
