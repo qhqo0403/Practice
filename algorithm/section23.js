@@ -1,4 +1,5 @@
 // 이진 힙 (Binary Heaps) : 트리의 한 종류. 이진 탐색 트리와 비슷한 구조
+// 이진 힙은 힙의 한 종류이고 힙은 트리의 한 종류
 // 이진 힙의 규칙은 이진 탐색 트리처럼 최대 두 개의 자식 노드를 가질 수 있고 부모 노드가 자식 노드보다 항상 크거나 작다는 것
 // 이진 탐색 트리와 비슷하지만 왼쪽(작은 값), 오른쪽(큰 값)의 순서가 없음.
 // 최대 이진힙은 부모노드가 자식노드보다 항상 큰 값을 가지는 구조, 최소 이진힙은 부모노드가 자식노드보다 항상 작은 값을 가지는 구조
@@ -103,13 +104,13 @@ class PriorityQueue {
     this.bubbleUp();
   };
 
-  bubbleUp() {
+  bubbleUp() { // 노드를 맨 마지막에 추가를 하고 부모와의 우선순위 비교를 통해서 알맞은 자리에 배치
     let idx = this.values.length - 1;
     let element = this.values[idx];
     while (idx > 0) {
       let parentIdx = Math.floor((idx - 1) / 2);
       let parent = this.values[parentIdx];
-      if (element.priority >= parent.priority) break;
+      if (element.priority >= parent.priority) break; // element의 우선순위가 부모의 우선순위보다 높을 경우에는 반복문 종료
       this.values[parentIdx] = element;
       this.values[idx] = parent;
       idx = parentIdx;
@@ -117,8 +118,8 @@ class PriorityQueue {
   };
 
   dequeue() {
-    const min = this.values[0];
-    const end = this.values.pop();
+    const min = this.values[0]; // 맨 위(앞)의 우선순위가 가장 높은 노드를 제거
+    const end = this.values.pop(); // 마지막 노드
     if (this.values.length > 0) {
       this.values[0] = end;
       this.sinkDown();
@@ -138,14 +139,14 @@ class PriorityQueue {
 
       if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
-        if (leftChild.priority < element.priority) {
+        if (leftChild.priority < element.priority) { // 왼쪽 자식의 우선순위가 element의 우선순위보다 작다면 자리 교환
           swapIdx = leftChildIdx;
         };
       };
 
       if (rightChildIdx < length) {
         rightChild = this.values[rightChildIdx];
-        if ((swapIdx === null && rightChild.priority < element.priority) || (swapIdx !== null && rightChild.priority < leftChild.priority)) {
+        if ((swapIdx === null && rightChild.priority < element.priority) || (swapIdx !== null && rightChild.priority < leftChild.priority)) { // 오른쪽 자식의 우선순위가 더 작다면 자리교환
           swapIdx = rightChildIdx;
         };
       };
@@ -157,5 +158,11 @@ class PriorityQueue {
       idx = swapIdx;
     };
   };
-
 };
+
+
+// 이진 힙의 빅오표기 : 삽입과 삭제에 대해서 O(log n), 검색은 O(n)
+// 데이터를 삽입할 경우에는 부모와의 비교가 log 2 만큼 이루어지기 때문! -> 삭제에서도 같은 원리(자리를 바꾸고 제자리를 찾아가는 과정이 부모와의 비교를 통해)
+// 한쪽으로 치우칠 수 있는 이진 탐색 트리와 달리 이진 힙은 각 왼쪽 오른쪽이 다 채워지는 것이 규칙임
+// 검색을 자주하게 된다면 이진 힙 보다는 이진탐색 트리가 더 효율적임 -> 이진 힙은 형제들 간의 규칙이 없고 단지 부모보다 큰 값이나 작은 값이 순서없이 저장되어 있기 때문에 값을 찾는데에 오래걸리게 됨
+// 이진 탐색 트리에서는 자식 노드들의 값을 비교를 통해서 접근할 수 있음
