@@ -22,7 +22,7 @@ const UserInput = (props) => {
 
   const inputChangeHander = (input, value) => {
     setUserInput((prevInput) => {
-      return {...prevInput, [input]: value} // 객체의 키값으로 동적인 값을 받을 때 [] 대괄호 사용
+      return {...prevInput, [input]: +value} // 객체의 키값으로 동적인 값을 받을 때 [] 대괄호 사용
     });
   };
 
