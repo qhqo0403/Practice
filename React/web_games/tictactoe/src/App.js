@@ -1,4 +1,4 @@
-import { useEffect, useReducer} from 'react';
+import { useEffect, useReducer, useState} from 'react';
 import './App.css';
 import Table from './components/Table';
 
@@ -35,6 +35,7 @@ const gameReducer = (state, action) => {
 function App() {
   const [gameState, dispatchGame] = useReducer(gameReducer, initialState);
   const {winner, turn, tableData, recentCell} = gameState;
+  const [isDraw, setIsDraw] = useState(false);
 
   const tableClickHandler = () => {
     dispatchGame({type: SET_WINNER, winner: 'O'});
@@ -76,8 +77,10 @@ function App() {
         });
       });
       if (end) { // 게임 끝
+        setIsDraw(true);
         setTimeout(() => {
           dispatchGame({type: RESET_GAME})
+          setIsDraw(false);
         }, 1000);
       } else {
         dispatchGame({type: CHANGE_TURN});
@@ -91,6 +94,7 @@ function App() {
     <>
       <Table onClick={tableClickHandler} tableData={tableData} dispatchGame={dispatchGame} />
       {winner && <p>{winner}님의 승리!</p>}
+      {isDraw && <p>무승부!</p>}
     </>
   );
 }
