@@ -1,11 +1,13 @@
 import React from "react";
-import { CLICK_CELL, CHANGE_TURN } from "../App";
+import { CLICK_CELL } from "../App";
 
 const Td = ({rowIndex, cellIndex, dispatchGame, cellData}) => {
   const tdClickHander = () => {
+    if (cellData) {
+      return;
+    }
     console.log(rowIndex, cellIndex);
     dispatchGame({type: CLICK_CELL, row: rowIndex, cell: cellIndex});
-    dispatchGame({type: CHANGE_TURN})
   }
 
   return (
